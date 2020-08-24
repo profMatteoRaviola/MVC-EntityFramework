@@ -1,0 +1,53 @@
+﻿@model IEnumerable<MVC_EntityFramework.Models.Ordine>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Data)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Mod_pagamento)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cliente)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Data)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Mod_pagamento)
+            </td>
+            <td>
+                @Html.DropDownListFor(modelItem => item.ClienteId, ViewData["ClienteId"] as SelectList, new { @disabled ="disabled" })
+                <!--Html.DisplayFor(modelItem => item.Cliente.Cognome) meglio vedere il cliente come Id_Nome_Cognome-->
+                <!--
+                    con DropDownListFor viene generato un campo <select> come richiesto, dove le select list viene generata
+                    nella action create del controller dell'ordine
+                    il campo select è bloccato, nel senso che la select è disabled
+                -->
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
