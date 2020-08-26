@@ -23,7 +23,9 @@ namespace MVC_EntityFramework.Controllers
         // GET: Ordines
         public async Task<IActionResult> Index()
         {
-            ViewData["ClienteId"] = new SelectList(_context.Clienti, "Id", "Nome"); 
+            
+            ViewData["ClienteId1"] = new SelectList(_context.Clienti, "Id", "Nome");
+            ViewData["ClienteId2"] = new SelectList(_context.Clienti, "Id", "Cognome");
             //come mettere nella select Nome_Cognome ??
             var context = _context.Ordini.Include(o => o.Cliente);
             return View(await context.ToListAsync());
