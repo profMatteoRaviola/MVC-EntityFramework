@@ -24,8 +24,8 @@ namespace MVC_EntityFramework.Controllers
         public async Task<IActionResult> Index()
         {
             
-            ViewData["ClienteId1"] = new SelectList(_context.Clienti, "Id", "Nome");
-            ViewData["ClienteId2"] = new SelectList(_context.Clienti, "Id", "Cognome");
+            //ViewData["ClienteId1"] = new SelectList(_context.Clienti, "Id", "NomeCognome");
+            //ViewData["ClienteId2"] = new SelectList(_context.Clienti, "Id", "Cognome");
             //come mettere nella select Nome_Cognome ??
             var context = _context.Ordini.Include(o => o.Cliente);
             return View(await context.ToListAsync());
@@ -53,7 +53,7 @@ namespace MVC_EntityFramework.Controllers
         // GET: Ordines/Create
         public IActionResult Create()
         {
-            ViewData["ClienteId"] = new SelectList(_context.Clienti, "Id", "Nome"); //la stringa sarà Id Nome Cognome
+            ViewData["ClienteId"] = new SelectList(_context.Clienti, "Id", "NomeCognome"); //la stringa sarà Nome_Cognome
             return View();
         }
 
@@ -71,7 +71,7 @@ namespace MVC_EntityFramework.Controllers
                 return RedirectToAction(nameof(Index));
             }
             //var nome_cognome = $"{ordine.Cliente.Nome}_{ordine.Cliente.Nome}";
-            ViewData["ClienteId"] = new SelectList(_context.Clienti, "Id", "Nome", ordine.ClienteId);
+            ViewData["ClienteId"] = new SelectList(_context.Clienti, "Id", "NomeCognome", ordine.ClienteId);
             return View(ordine);
         }
 
@@ -88,7 +88,7 @@ namespace MVC_EntityFramework.Controllers
             {
                 return NotFound();
             }
-            ViewData["ClienteId"] = new SelectList(_context.Clienti, "Id", "Cognome", ordine.ClienteId);
+            ViewData["ClienteId"] = new SelectList(_context.Clienti, "Id", "NomeCognome", ordine.ClienteId);
             return View(ordine);
         }
 

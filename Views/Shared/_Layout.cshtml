@@ -13,7 +13,7 @@
         1) la paginazione è fatta clietn side, quindi in realtà vengono scaricate tutte le informazioni per la tabella (se è grossa, ci mette un sacco)
         2) ci sono troppe richieste al server ogni qual volta si vogliono eseguire delle azioni -> Ajax per risolvere parzialmente il problema
     -->
-    @RenderSection("Style", required:false);
+    @RenderSection("Style", required:false)
 </head>
 <body>
     <header>
@@ -61,6 +61,6 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
-    @RenderSection("Scripts", required: false);
+    @RenderSection("Scripts", required: false)
 </body>
 </html>
