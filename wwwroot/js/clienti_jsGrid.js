@@ -1,19 +1,18 @@
 ﻿$(document).ready(function () {
-    alert("Ciao");
     $("#jsGrid").jsGrid({
         
         width: "100%", //la griglia occupa tutto lo spazio del div
 
         //la griglia mi permette di fare CRUD, ordinare, paginare con 10pagine per volta e filtrare le tuple
         inserting: true,
-        editign: true,
+        editing: true,
         sorting: true,
-        paging: true,
+        //paging: true,
         filtering: true,
 
         autoload: true,
-        pageLoading: true,
-        pageSize: 10,
+        //pageLoading: true,
+        //pageSize: 10,
 
         controller: { //vado ad agganciare la chimata ajax, con la corrispoettiva API rest, al bottone della griglia
             loadData: function (filter) {
@@ -47,7 +46,7 @@
                  */
                 return $.ajax({
                     type: "put",
-                    url: "/api/clienti" + item.id,
+                    url: "/api/clienti/" + item.id,
                     data: JSON.stringify(item),
                     contentType: "application/json",
                     dataType: "json"
@@ -59,7 +58,7 @@
                  */
                 return $.ajax({
                     type: "delete",
-                    url: "/api/clienti" + item.id,
+                    url: "/api/clienti/" + item.id,
                     contentType: "application/json",
                     dataType: "json"
                 });
@@ -74,5 +73,4 @@
             { type: "control" } /*colonna con le icone per le operazioni CRUD*/
         ]
     });
-    alert("finito jsGrid");
 });
